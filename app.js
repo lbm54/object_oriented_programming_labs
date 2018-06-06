@@ -76,59 +76,72 @@ person4.sayHello();
 person5.sayHello();
 
 class Vehicle {
-    constructor(manufacturer, numWheels) {
-        this.manufacturer = manufacturer;
-        this.numWheels = numWheels;
-    }
+  constructor(type, manufacturer, numWheels) {
+    this.manufacturer = manufacturer;
+    this.numWheels = numWheels;
+    this.type = type;
+  }
 
-    aboutVehicle() {
-        console.log(`I am a Vehicle.  I was made by ${this.manufacturer} and I have ${this.numWheels} wheels`);
-    }
+  aboutVehicle() {
+    console.log(
+      `I am a ${this.type}.  I was made by ${this.manufacturer} and I have ${
+        this.numWheels
+      } wheels`
+    );
+  }
 }
 
 class Truck extends Vehicle {
-    constructor(manufacturer, numWheels, numDoors, hasBed) {
-        super(manufacturer, numWheels);
-        this.numDoors = numDoors;
-        this.hasBed = hasBed;
-    }
+  constructor(type, manufacturer, numWheels, numDoors, hasBed) {
+    super(type, manufacturer, numWheels);
+    this.numDoors = numDoors;
+    this.hasBed = hasBed;
+  }
 
-    aboutVehicle() {
-        console.log(`I am a Truck.  I was made by ${this.manufacturer} and I have ${this.numWheels} wheels and ${this.numDoors} doors`);
-        (this.hasBed) ? console.log('I also have a bed') : console.log("I don't have a bed");
-    }
+  aboutVehicle() {
+    super.aboutVehicle();
+    console.log(`I have ${this.numDoors} doors`);
+    this.hasBed
+      ? console.log("I also have a bed")
+      : console.log("I don't have a bed");
+  }
 }
 
 class Sedan extends Vehicle {
-    constructor(manufacturer, numWheels, size, mpg) {
-        super(manufacturer, numWheels);
-        this.size = size;
-        this.mpg = mpg;
-    }
+  constructor(type, manufacturer, numWheels, size, mpg) {
+    super(type, manufacturer, numWheels);
+    this.size = size;
+    this.mpg = mpg;
+  }
 
-    aboutVehicle() {
-        console.log(`I am a Sedan.  I was made by ${this.manufacturer} and I have ${this.numWheels} wheels, I get ${this.mpg} mpg and I am ${this.size} sized`);              
-    }
+  aboutVehicle() {
+    super.aboutVehicle();
+    console.log(`In addition, I get ${this.mpg} mpg and I am ${this.size} sized`);
+  }
 }
 
 class Motorcycle extends Vehicle {
-    constructor(manufacturer, numWheels, hasHandlebars, noDoors) {
-        super(manufacturer, numWheels);
-        this.hasHandlebars = hasHandlebars;
-        this.noDoors = noDoors;
-    }
+  constructor(type, manufacturer, numWheels, hasHandlebars, noDoors) {
+    super(type, manufacturer, numWheels);
+    this.hasHandlebars = hasHandlebars;
+    this.noDoors = noDoors;
+  }
 
-    aboutVehicle() {
-        console.log(`I am a Motorcycle.  I was made by ${this.manufacturer} and I have ${this.numWheels} wheels`);       
-        (this.hasHandlebars) ? console.log("I also have handlebars") : console.log("I don't have handlebars");
-        (this.noDoors) ? console.log("I don't have doors") : console.log("I have doors");
-    }
+  aboutVehicle() {
+    super.aboutVehicle();
+    this.hasHandlebars
+      ? console.log("I also have handlebars")
+      : console.log("I don't have handlebars");
+    this.noDoors
+      ? console.log("I don't have doors")
+      : console.log("I have doors");
+  }
 }
 
-let vehicle = new Vehicle("Jeep Grand Cherokee", 4);
-let truck = new Truck("Ford F-150", 4, 4, true);
-let sedan = new Sedan("Toyota Camry", 4, "medium", 30);
-let motorcycle = new Motorcycle("Harley", 2, true, true);
+let vehicle = new Vehicle("Grand Cherokee", "Jeep", 4);
+let truck = new Truck("F-150", "Ford", 4, 4, true);
+let sedan = new Sedan("Camry", "Toyota", 4, "medium", 30);
+let motorcycle = new Motorcycle("Some model", "Harley Davidson", 2, true, true);
 
 vehicle.aboutVehicle();
 truck.aboutVehicle();
