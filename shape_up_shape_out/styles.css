@@ -1,0 +1,43 @@
+.wrapper {
+    display: flex;
+}
+
+.container {
+  width: 600px;
+  height: 600px;
+  background-color: aliceblue;
+  display: inline-block;
+  flex: 0 0 65%;
+}
+
+.sidePanel {
+  background-color: mistyrose;
+  width: 200px;
+  height: 600px;
+  flex: 1;
+
+}
+
+.shape {
+  position: absolute;
+}
+
+.circle {
+    background-color: purple;
+}
+
+.square {
+    background-color: red
+}
+
+.triangle {
+    background-color: yellow;
+}
+
+.rectangle {
+    background-color: green;
+}
+
+input {
+  margin: 0.5rem;
+}
