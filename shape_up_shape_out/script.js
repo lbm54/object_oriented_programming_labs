@@ -7,32 +7,37 @@ let liRadius = document.getElementById("radius");
 let liArea = document.getElementById("area");
 let liPerimeter = document.getElementById("perimeter");
 
+function randomNumber(max, min) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
 class Shape {
   constructor(name, width, height, radius) {
     this.name = name;
     this.width = width;
     this.height = height;
     this.radius = radius;
-
+    
     this.shapeDiv = document.createElement("div");
     this.shapeDiv.classList.add("shape");
-
-    let xPos = `${Math.floor(Math.random() * (600 - width) + width)}px`;
-    let yPos = `${Math.floor(Math.random() * (600 - height) + height)}px`;
-    this.shapeDiv.style.top = yPos;
-    this.shapeDiv.style.left = xPos;
-    this.shapeDiv.style.height = this.height + "px";
-    this.shapeDiv.style.width = this.width + "px";
-
+    this.positionMe(width, height);
     this.shapeDiv.addEventListener("click", () => {
       this.describe();
     });
     this.shapeDiv.addEventListener("dblclick", () => {
-        console.log('I was called!');
-        container.removeChild(this.shapeDiv);
+      container.removeChild(this.shapeDiv);
     });
 
     container.appendChild(this.shapeDiv);
+  }
+
+  positionMe(width, height) {
+    let xPos = `${randomNumber(600, width)}px`;
+    let yPos = `${randomNumber(600, height)}px`;
+    this.shapeDiv.style.top = yPos;
+    this.shapeDiv.style.left = xPos;
+    this.shapeDiv.style.height = height + "px";
+    this.shapeDiv.style.width = width + "px";
   }
 
   describe() {
@@ -50,14 +55,14 @@ class Rectangle extends Shape {
     super(name, width, height, null);
     this.perimeter = height * 2 + width * 2;
     this.area = width * height;
-    this.shapeDiv.style.backgroundColor = 'green';
+    this.shapeDiv.style.backgroundColor = "green";
   }
 }
 
 class Square extends Rectangle {
   constructor(side) {
     super("square", side, side);
-    this.shapeDiv.style.backgroundColor = 'red';
+    this.shapeDiv.style.backgroundColor = "red";
   }
 }
 
@@ -66,8 +71,18 @@ class Circle extends Shape {
     super("circle", radius * 2, radius * 2, radius);
     this.area = Math.PI * radius * radius;
     this.perimeter = Math.PI * radius * 2;
+    this.shapeDiv.style.backgroundColor = "purple";
+    this.positionMe(radius);
+  }
+
+  positionMe(radius) {
+    let xPos = `${randomNumber(600 - radius, radius)}px`;
+    let yPos = `${randomNumber(600 - radius, radius)}px`;
+    this.shapeDiv.style.top = yPos;
+    this.shapeDiv.style.left = xPos;
+    this.shapeDiv.style.height = radius * 2 + "px";
+    this.shapeDiv.style.width = radius * 2 + "px";
     this.shapeDiv.style.borderRadius = `${radius}px`;
-    this.shapeDiv.style.backgroundColor = 'purple';
   }
 }
 
@@ -76,7 +91,19 @@ class Triangle extends Shape {
     super("triangle", height, height, null);
     this.perimeter = 2 * height + Math.sqrt(2) * height;
     this.area = height * height * 0.5;
-    this.shapeDiv.style.backgroundColor = 'yellow';
+    this.positionMe(height);
+  }
+
+  positionMe(height) {
+    let xPos = `${randomNumber(600 - height, height)}px`;
+    let yPos = `${randomNumber(600 - height, height)}px`;
+    this.shapeDiv.style.top = yPos;
+    this.shapeDiv.style.left = xPos;
+    this.shapeDiv.style.width = 0;
+    this.shapeDiv.style.height = 0;
+    this.shapeDiv.style.borderLeft = `${height}px solid transparent`;
+    this.shapeDiv.style.borderBottom = `${height * 2}px solid yellow`;
+    this.shapeDiv.style.borderRight = `${height}px solid transparent`;
   }
 }
 
