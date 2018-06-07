@@ -7,17 +7,17 @@ let dieArray = [];
 class Die {
     constructor() {
         this.dieDiv = document.createElement('div');
-        this.innerDiv = document.createElement('div');
+        this.innerH4 = document.createElement('h4');
         this.roll();
         this.dieDiv.classList.add('dieDiv');
-        this.innerDiv.classList.add('innerDiv');
-        this.dieDiv.appendChild(this.innerDiv);
+        this.innerH4.classList.add('innerH4');
+        this.dieDiv.appendChild(this.innerH4);
         container.appendChild(this.dieDiv);
         dieArray.push(this);
     }
 
     roll() {
-        this.innerDiv.innerHTML = Math.floor((Math.random() * 6) + 1);
+        this.innerH4.innerHTML = Math.floor((Math.random() * 6) + 1);
     }
 }
 
