@@ -1,6 +1,6 @@
-.wrapper {
+/* .wrapper {
     display: flex;
-}
+} */
 
 .container {
   width: 600px;
@@ -14,7 +14,8 @@
   background-color: mistyrose;
   width: 200px;
   height: 600px;
-
+  display: inline-block;
+  vertical-align: top;
 }
 
 .shape {
